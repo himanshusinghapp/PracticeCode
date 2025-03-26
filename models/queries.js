@@ -1,10 +1,10 @@
 const pool = require('./config');
 
 module.exports = {
-  createUser: async (username, email) => {
+  createUser: async (name, email) => {
     const result = await pool.query(
-      'INSERT INTO users(username, email) VALUES($1, $2) RETURNING *',
-      [username, email]
+      'INSERT INTO users(name, email) VALUES($1, $2) RETURNING *',
+      [name, email]
     );
     return result.rows[0];
   },
@@ -19,10 +19,10 @@ module.exports = {
     return result.rows[0];
   },
 
-  updateUser: async (id, username, email) => {
+  updateUser: async (id, name, email) => {
     const result = await pool.query(
-      'UPDATE users SET username = $1, email = $2 WHERE id = $3 RETURNING *',
-      [username, email, id]
+      'UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *',
+      [name, email, id]
     );
     return result.rows[0];
   },

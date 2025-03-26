@@ -3,8 +3,8 @@ const { createUser, getUsers, getUserById, updateUser, deleteUser } = require('.
 module.exports = {
   createUser: async (request, h) => {
     try {
-      const { username, email } = request.payload;
-      const user = await createUser(username, email);
+      const { name, email } = request.payload;
+      const user = await createUser(name, email);
       return h.response(user).code(201);
     } catch (err) {
       return h.response({ error: err.message }).code(500);
@@ -36,8 +36,8 @@ module.exports = {
   updateUser: async (request, h) => {
     try {
       const { id } = request.params;
-      const { username, email } = request.payload;
-      const user = await updateUser(id, username, email);
+      const { name, email } = request.payload;
+      const user = await updateUser(id, name, email);
       if (!user) {
         return h.response({ error: 'User not found' }).code(404);
       }
